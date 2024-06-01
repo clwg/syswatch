@@ -1,6 +1,6 @@
 # Syswatch
 
-SysWatch strives to be a scalable and endpoint messaging reference implemenation designed to facilitate the real-time monitoring and direct command invocation across a variety of endpoints and platforms. Syswatch leverages gRPC for communication and supports both direct and broadcast messaging to endpoints and accessiable through a HTTP API.
+Syswatch strives to be a scalable and endpoint messaging reference implemenation designed to facilitate the real-time monitoring and direct command invocation across a variety of endpoints and platforms. Syswatch leverages gRPC for communication and supports both direct and broadcast messaging to endpoints and accessiable through a HTTP API.
 
 ## Status
 
