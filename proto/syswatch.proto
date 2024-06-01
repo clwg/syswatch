@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "github.com/clwg/syswatch/proto/syswatch";
+
+package syswatch;
+
+service SysWatch {
+  rpc BidirectionalStreamPayload (stream RequestMessage) returns (stream ResponseMessage) {}
+  rpc GenerateUUID(Empty) returns (UUIDResponse) {}
+}
+
+message RequestMessage {
+  string payload = 1;
+  string connection_id = 2;  // Unique identifier for each connection
+  string source = 3; // Source of the message, could be file or direct invocation
+}
+
+message ResponseMessage {
+  string payload = 1;
+}
+
+message Empty {}
+
+message UUIDResponse {
+    string uuid = 1;
+}
