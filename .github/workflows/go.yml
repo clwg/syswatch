@@ -1,0 +1,35 @@
+# This workflow will build two Go applications
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Build Syswatch Applications
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Build syswatch-client
+      run: go build -v -o bin/syswatch-client ./cmd/syswatch-client/syswatch-client.go
+
+    - name: Build syswatch-server
+      run: go build -v -o bin/syswatch-server ./cmd/syswatch-server/syswatch-server.go
+
+    - name: Test
+      run: go test -v ./...
+
+
+- name: Download a Build Artifact
+  uses: actions/download-artifact@v4.1.7
