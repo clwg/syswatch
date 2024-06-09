@@ -42,6 +42,7 @@ func main() {
 		LogDir:         *logDir,
 		MaxLines:       *maxLines,
 		RotationTime:   *rotationTime,
+		LogFormat:      logwriter.FormatText,
 	}
 
 	fileLogger, err := logwriter.NewLogger(LoggingConfig)
