@@ -44,7 +44,7 @@ go run cmd/syswatch-client/syswatch-client.go -ca_file data/x509/ca_cert.pem -tl
 #### Send Commands
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"id":"1fa197a0-289c-481e-a281-88753019733d", "message":"netstat -an"}' http://localhost:8084/send
+curl -X POST -H "Content-Type: application/json" -d '{"id":"3bde47e2-13a8-4ed8-a88e-1518c7e0dd00", "message":"netstat -an"}' http://localhost:8084/send
 curl -X POST -H "Content-Type: application/json" -d '{"id":"6d5a76ff-812f-4d7b-adf3-9089cc1ffce6", "message":"netstat -an"}' http://localhost:8084/send
 ```
 
@@ -67,3 +67,8 @@ protoc --go_out=. --go_opt=paths=source_relative \
 ```
 
 - If you want to change the server name you can modify the server_alt_names in the data/x509/openssl.cnf file.
+
+
+## Todo
+- Websocket interface for accessing streaming data
+- Proper connection handling, and reconnection logic

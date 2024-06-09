@@ -29,6 +29,11 @@ func InitializeSysWatchServer(logger *rotatinglogger.Logger) *SysWatchServer {
 	}
 }
 
+func (s *SysWatchServer) GenerateUUID(context.Context, *pb.Empty) (*pb.UUIDResponse, error) {
+	uuid := uuid.New().String()
+	return &pb.UUIDResponse{Uuid: uuid}, nil
+}
+
 func (s *SysWatchServer) BidirectionalStreamPayload(stream pb.SysWatch_BidirectionalStreamPayloadServer) error {
 	var connID string
 
@@ -45,17 +50,15 @@ func (s *SysWatchServer) BidirectionalStreamPayload(stream pb.SysWatch_Bidirecti
 			log.Printf("Server registered new client with connection ID: %s", connID)
 		}
 
-		s.logger.Log(in.GetPayload())
+		source := in.GetSource()
+		logData := connID + " | " + source + " | " + in.GetPayload()
+
+		s.logger.Log(logData)
 	}
 
 	s.clients.Delete(connID)
 	log.Printf("Client disconnected with connection ID: %s", connID)
 	return nil
-}
-
-func (s *SysWatchServer) GenerateUUID(context.Context, *pb.Empty) (*pb.UUIDResponse, error) {
-	uuid := uuid.New().String()
-	return &pb.UUIDResponse{Uuid: uuid}, nil
 }
 
 func (s *SysWatchServer) directMessage(payload, senderID string) {
