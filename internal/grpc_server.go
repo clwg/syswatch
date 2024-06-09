@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	rotatinglogger "github.com/clwg/go-rotating-logger"
+	logwriter "github.com/clwg/go-rotating-logger"
 	pb "github.com/clwg/syswatch/proto"
 	"github.com/google/uuid"
 )
@@ -19,10 +19,10 @@ type SysWatchServer struct {
 	pb.UnimplementedSysWatchServer
 	clients sync.Map
 	stopCh  chan struct{}
-	logger  *rotatinglogger.Logger
+	logger  *logwriter.Logger
 }
 
-func InitializeSysWatchServer(logger *rotatinglogger.Logger) *SysWatchServer {
+func InitializeSysWatchServer(logger *logwriter.Logger) *SysWatchServer {
 	return &SysWatchServer{
 		stopCh: make(chan struct{}),
 		logger: logger,

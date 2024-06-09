@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	filewriter "github.com/clwg/go-rotating-logger"
+	logwriter "github.com/clwg/go-rotating-logger"
 	"github.com/clwg/syswatch/data"
 
 	syswatch "github.com/clwg/syswatch/internal"
@@ -37,14 +37,14 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	LoggingConfig := filewriter.LoggerConfig{
+	LoggingConfig := logwriter.LoggerConfig{
 		FilenamePrefix: *filenamePrefix,
 		LogDir:         *logDir,
 		MaxLines:       *maxLines,
 		RotationTime:   *rotationTime,
 	}
 
-	fileLogger, err := filewriter.NewLogger(LoggingConfig)
+	fileLogger, err := logwriter.NewLogger(LoggingConfig)
 	if err != nil {
 		panic(err)
 	}
