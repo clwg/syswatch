@@ -1,5 +1,7 @@
 github.com/clwg/go-rotating-logger v0.0.0-20240609145829-410ae55aae28 h1:YnuhK+QP38vsSo/DYno4CKjZXsQ2lt1iZIEwkXWd3ps=
 github.com/clwg/go-rotating-logger v0.0.0-20240609145829-410ae55aae28/go.mod h1:7IFs7nHyGPiC5Q/TPbwJXN3v2d30VGZmqJH90dCyhR0=
+github.com/fsnotify/fsnotify v1.7.0 h1:8JEhPFa5W2WU7YfeZzPNqzMP6Lwt7L2715Ggo0nosvA=
+github.com/fsnotify/fsnotify v1.7.0/go.mod h1:40Bi/Hjc2AVfZrqy+aj+yEI+/bRxZnMJyTJwOpGvigM=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
