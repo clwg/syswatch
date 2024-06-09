@@ -17,6 +17,7 @@ message RequestMessage {
 
 message ResponseMessage {
   string payload = 1;
+  string source = 2;
 }
 
 message Empty {}

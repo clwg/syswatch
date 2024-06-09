@@ -47,6 +47,7 @@ func (s *SysWatchServer) apiSendMessage(w http.ResponseWriter, r *http.Request) 
 
 	connStream := value.(*connectionStream)
 	out := &pb.ResponseMessage{Payload: req.Message}
+
 	if err := connStream.stream.Send(out); err != nil {
 		http.Error(w, "Failed to send message", http.StatusInternalServerError)
 		return

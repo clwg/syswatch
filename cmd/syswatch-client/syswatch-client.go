@@ -58,11 +58,11 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := client.GenerateUUID(ctx, &pb.Empty{})
+	connUuid, err := client.GenerateUUID(ctx, &pb.Empty{})
 	if err != nil {
 		log.Fatalf("Could not generate UUID: %v", err)
 	}
-	connectionID := r.GetUuid()
+	connectionID := connUuid.GetUuid()
 
 	stream, err := client.BidirectionalStreamPayload(context.Background())
 	if err != nil {
@@ -128,7 +128,9 @@ func receiveServerMessages(stream pb.SysWatch_BidirectionalStreamPayloadClient, 
 		responseMessage := &pb.RequestMessage{
 			Payload:      string(streamResponse),
 			ConnectionId: connectionID,
+			Source:       "direct",
 		}
+
 		if err := stream.Send(responseMessage); err != nil {
 			log.Printf("Failed to send response message: %v", err)
 			return

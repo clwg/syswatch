@@ -50,7 +50,7 @@ func ExecuteCommand(cmdStr string, timeoutSecs ...int) (string, error) {
 		for scanner.Scan() {
 			line := scanner.Text()
 			out.WriteString(line + "\n")
-			fmt.Println(line) // Optionally, print the line to stdout or handle it otherwise
+			//fmt.Println(line) // Optionally, print the line to stdout or handle it otherwise
 		}
 		done <- scanner.Err()
 	}()
