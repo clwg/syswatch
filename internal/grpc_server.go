@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	rotatinglogger "github.com/clwg/syswatch/logging"
+	rotatinglogger "github.com/clwg/go-rotating-logger"
 	pb "github.com/clwg/syswatch/proto"
 	"github.com/google/uuid"
 )

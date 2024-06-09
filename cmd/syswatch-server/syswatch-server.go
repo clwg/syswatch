@@ -10,8 +10,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
+	filewriter "github.com/clwg/go-rotating-logger"
 	"github.com/clwg/syswatch/data"
-	filewriter "github.com/clwg/syswatch/logging"
 
 	syswatch "github.com/clwg/syswatch/internal"
 	pb "github.com/clwg/syswatch/proto"

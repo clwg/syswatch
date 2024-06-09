@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/clwg/go-rotating-logger v0.0.0-20240608005508-417f71e9a63a // indirect
 	github.com/hpcloud/tail v1.0.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
