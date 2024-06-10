@@ -42,23 +42,26 @@ go run cmd/syswatch-client/syswatch-client.go -addr localhost:51001 -ca_file dat
  ```
 
 #### Send Commands
-
+Specifying the correct ID (Based upon the list connections) will send the command to the correct endpoint.
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"id":"3bde47e2-13a8-4ed8-a88e-1518c7e0dd00", "message":"netstat -an"}' http://localhost:8084/send
 curl -X POST -H "Content-Type: application/json" -d '{"id":"6d5a76ff-812f-4d7b-adf3-9089cc1ffce6", "message":"netstat -an"}' http://localhost:8084/send
 ```
 
 #### Broadcast Commands
+Will send the command to all connected endpoints.
+
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"message":"Control broadcast message via http api"}' http://localhost:8084/broadcast
+curl -X POST -H "Content-Type: application/json" -d '{"message":"ps -aux"}' http://localhost:8084/broadcast
 ```
 
 
 ### Notes
 
 - There is a timeout set for 10 seconds on direct methods.
-
+- Any node that can connect can issue a command message.  This needs to be restricted to only HTTP API calls.
 - Build protobuf (if needed)
+
 
 ```shell
 protoc --go_out=. --go_opt=paths=source_relative \
