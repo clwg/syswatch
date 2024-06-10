@@ -30,7 +30,7 @@ go run cmd/syswatch-server/syswatch-server.go -cert_file data/x509/server_cert.p
 3. Attach a Client
 
 ```shell
-go run cmd/syswatch-client/syswatch-client.go -ca_file data/x509/ca_cert.pem -tls -filelist filelist.txt
+go run cmd/syswatch-client/syswatch-client.go -addr localhost:51001 -ca_file data/x509/ca_cert.pem -tls -filelist filelist.txt
 ```
 
 ### API
