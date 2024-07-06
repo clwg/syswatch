@@ -19,6 +19,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
+	"golang.org/x/sys/unix"
+
 )
 
 var (
@@ -80,11 +82,16 @@ func main() {
 
 	for scanner.Scan() {
 		filename := scanner.Text()
-		wg.Add(1)
-		go func(filename string) {
-			defer wg.Done()
-			tailFileAndSendLogs(filename, connectionID, stream)
-		}(filename)
+		if checkFilePermissions(filename) {
+			log.Printf("File %s stream enabled", filename)
+			wg.Add(1)
+			go func(filename string) {
+				defer wg.Done()
+				tailFileAndSendLogs(filename, connectionID, stream)
+			}(filename)
+		} else {
+			log.Printf("File %s cannot be read due to insufficient permissions", filename)
+		}
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -160,4 +167,12 @@ func tailFileAndSendLogs(filename, connectionID string, stream pb.SysWatch_Bidir
 		}
 		//log.Printf("Sent log message from %s: %s", filename, line.Text)
 	}
+}
+
+func checkFilePermissions(filename string) bool {
+	err := unix.Access(filename, unix.R_OK)
+	if err != nil {
+		return false
+	}
+	return true
 }
